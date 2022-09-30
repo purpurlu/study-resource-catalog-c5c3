@@ -102,7 +102,7 @@ export function SubmitResource({
     }
   };
 
-  async function handleSubmitResource() {
+  async function handleSubmitResource():Promise<void> {
     const data: IResource = {
       resourceID: 0,
       submitter: inputs.submitter,
@@ -119,6 +119,11 @@ export function SubmitResource({
       "https://study-resource-catalog-c5c3.herokuapp.com/resources", //change to heroku
       data
     );
+
+    if (response.status===250) {
+      toast.warning('This resource has been submitted before!');
+      return
+    }
 
     const resourceData: IResource = response.data;
 
