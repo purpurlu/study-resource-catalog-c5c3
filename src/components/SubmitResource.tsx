@@ -223,7 +223,7 @@ export function SubmitResource({
             return <option key={index}> {contentType.content_type}</option>;
           })}
         </select>
-        <div className="tags-cloud text-center">
+        <div className="tags-cloud text-center" id="tags-cloud">
           {tags.map((tag: Itag, index): JSX.Element => {
             return (
               <button
