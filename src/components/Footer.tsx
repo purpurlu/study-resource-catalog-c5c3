@@ -8,7 +8,7 @@ interface NavigationBarProps {
 export function Footer({ appState }: NavigationBarProps): JSX.Element {
   return (
     <div>
-      <Navbar bg="warning" variant="light">
+      <Navbar bg="warning" variant="light" fixed="bottom">
         <Container>
           <Navbar.Brand>Made By Team C5C3</Navbar.Brand>
         </Container>
