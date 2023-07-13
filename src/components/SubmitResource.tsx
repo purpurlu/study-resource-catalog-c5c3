@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import "../SubmitResource.css";
 import { useEffect, useState } from "react";
 import {
@@ -146,14 +146,14 @@ export function SubmitResource({
     };
 
     const response = await axios.post(
-      "https://study-resource-catalog-c5c3.herokuapp.com/resources", //change to heroku
+      "http://localhost:4000/resources", //change to heroku
       data
     );
 
     const resourceData: IResource = response.data;
 
     const contentTypeResponse = await axios.post(
-      "https://study-resource-catalog-c5c3.herokuapp.com/tablename/content_types_resource",
+      "http://localhost:4000/tablename/content_types_resource",
       {
         content_type: selectedContentType.content_type,
         resource_id: resourceData.resourceID,
@@ -165,7 +165,7 @@ export function SubmitResource({
     }
 
     const tagDataResponse = await axios.post(
-      "https://study-resource-catalog-c5c3.herokuapp.com/tablename/tag_resource",
+      "http://localhost:4000/tablename/tag_resource",
       {
         tag_name: selectedTags,
         resource_id: resourceData.resourceID,
@@ -176,7 +176,7 @@ export function SubmitResource({
     }
 
     const weekData = await axios.post(
-      "https://study-resource-catalog-c5c3.herokuapp.com/tablename/buildweek_resource",
+      "http://localhost:4000/tablename/buildweek_resource",
       {
         build_week_name: selectedWeek.build_week_name,
         resource_id: resourceData.resourceID,
@@ -194,7 +194,7 @@ export function SubmitResource({
       <div className="submit-resource-form text-center">
         <input
           className="form-control"
-          placeholder="Resource title"
+          placeholder="Resource Title"
           value={inputs?.title}
           onChange={(e) => setInputs({ ...inputs, title: e.target.value })}
         ></input>
@@ -218,26 +218,26 @@ export function SubmitResource({
             })
           }
         >
-          <option hidden>content type</option>
+          <option hidden>Content type</option>
           {contentTypes.map((contentType, index) => {
             return <option key={index}> {contentType.content_type}</option>;
           })}
         </select>
-        <div className="tags-cloud text-center">
+        <div className="border text-center rounded d-flex flex-row flex-wrap p-2 h-100">
           {tags.map((tag: Itag, index): JSX.Element => {
             return (
-              <button
-                className="buttonTag"
-                style={{
-                  backgroundColor: selectedTags.includes(tag.tag_name)
-                    ? "rgb(0, 145, 0)"
-                    : "white",
-                }}
+              <Button
+                variant={
+                  selectedTags.includes(tag.tag_name)
+                    ? "primary"
+                    : "outline-primary"
+                }
+                className="w-auto rounded m-1"
                 onClick={() => handleTagClick(tag.tag_name)}
                 key={index}
               >
                 {tag.tag_name}
-              </button>
+              </Button>
             );
           })}
         </div>
@@ -245,7 +245,7 @@ export function SubmitResource({
           className="form-control"
           onChange={(e) => setSelectedWeek({ build_week_name: e.target.value })}
         >
-          <option hidden>build week</option>
+          <option hidden>Build Week</option>
           {weeks?.map((week, index) => {
             return <option key={index}> {week.build_week_name} </option>;
           })}
@@ -256,7 +256,7 @@ export function SubmitResource({
             setInputs({ ...inputs, reccomendationOptions: e.target.value })
           }
         >
-          <option hidden>recommendation status</option>
+          <option hidden>Recommendation Status</option>
           {recommendations.map((recommendation, index) => {
             return (
               <option key={index}>
@@ -268,7 +268,7 @@ export function SubmitResource({
         </select>
         <input
           className="form-control"
-          placeholder="Why you would recommend this..."
+          placeholder="Why you would recommend this?"
           value={inputs?.reccomendationText}
           onChange={(e) =>
             setInputs({ ...inputs, reccomendationText: e.target.value })
@@ -276,17 +276,18 @@ export function SubmitResource({
         ></input>
         <textarea
           className="form-control"
-          placeholder="summary of resource"
+          placeholder="Summary"
           value={inputs?.summary}
           onChange={(e) => setInputs({ ...inputs, summary: e.target.value })}
         ></textarea>
-        <button
-          className="btn btn-success"
+        <Button
+          className="btn btn-primary"
           type="submit"
+          size="lg"
           onClick={handleSubmitResource}
         >
           Submit
-        </button>
+        </Button>
       </div>
     </Container>
   );

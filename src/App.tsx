@@ -16,7 +16,7 @@ function App(): JSX.Element {
       <BrowserRouter>
         <Header appState={appState} setAppState={setAppState} />
         <Main appState={appState} setAppState={setAppState} />
-        <Footer appState={appState} />
+        {/* <Footer appState={appState} /> */}
       </BrowserRouter>
     </>
   );

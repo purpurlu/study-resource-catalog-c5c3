@@ -73,7 +73,8 @@ export function ResourceCard({
     <Card
       key={resource.resourceID}
       style={{ minWidth: "18rem" }}
-      border="success"
+      border="primary"
+      className="mb-2"
     >
       <Card.Header className="resource-card-header">
         <div className="card-title">
@@ -95,7 +96,7 @@ export function ResourceCard({
             </Button>
           ) : (
             <Button
-              variant="outline-success"
+              variant="outline-secondary"
               onClick={handleFavourite}
               disabled={appState.loggedInUser === null}
             >

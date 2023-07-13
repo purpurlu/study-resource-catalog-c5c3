@@ -16,11 +16,13 @@ export function DisplayResources({
   useEffect(() => {
     refreshFaves({ appState, setAppState });
   }, [setAppState]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     getResources().then((allResources) =>
       setAppState((prev) => ({ ...prev, allResources: allResources }))
     );
   }, [setAppState]);
+
   return (
     <>
       <SearchBar appState={appState} setAppState={setAppState} />
@@ -64,7 +66,7 @@ export function DisplayResources({
                 setAppState={setAppState}
               />
             );
-          } else return "";
+          } else return null;
         })}
       </section>
     </>

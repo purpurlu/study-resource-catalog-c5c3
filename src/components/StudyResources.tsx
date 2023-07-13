@@ -17,7 +17,7 @@ export function StudyResources({
     refreshFaves({ appState, setAppState });
   }, [setAppState]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <>
+    <div className="p-3">
       {appState.faveResources.map((resource) => (
         <ResourceCard
           key={resource.resourceID}
@@ -26,6 +26,6 @@ export function StudyResources({
           setAppState={setAppState}
         />
       ))}
-    </>
+    </div>
   );
 }

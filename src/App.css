@@ -1,6 +1,6 @@
-.logged-status {
+/* .logged-status {
   margin: 10px;
-}
+} */
 .user-dropdown {
   margin: 10px;
 }
@@ -11,6 +11,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+
 @media screen and (max-width: 1000px) {
   .display-resources {
     padding: 5rem;

@@ -24,7 +24,7 @@ comment_id SERIAL PRIMARY KEY,
 
   try {
     const response = await axios.get(
-      `https://study-resource-catalog-c5c3.herokuapp.com/resources/comments/${resourceid}`
+      `http://localhost:4000/resources/comments/${resourceid}`
     );
     const comments: IComment[] = response.data.map((row: IDBComments) => ({
       userID: row.user_id,

@@ -18,7 +18,7 @@ function LoginUser({ appState, setAppState }: LoginUserProps): JSX.Element {
   useEffect(() => {
     const getUsers = async () => {
       const listOfUsers: IUser[] = await getUserList();
-      // console.log(listOfUsers);
+      console.log(listOfUsers);
       setAppState((appState) => ({ ...appState, userList: listOfUsers }));
     };
     getUsers();
@@ -55,43 +55,41 @@ function LoginUser({ appState, setAppState }: LoginUserProps): JSX.Element {
 
   return (
     <>
-      <div>
-        <Form.Select
-          aria-label="Default select example"
-          className="user-dropdown"
-          name="username"
-          id="user-dropdown"
-          onChange={handleSelect}
-          value={selectedUserId}
+      <div className="d-flex flex-row align-items-center w-50 justify-content-end">
+        <div className="w-100">
+          <Form.Select
+            aria-label="Default select example"
+            className="user-dropdown"
+            name="username"
+            id="user-dropdown"
+            onChange={handleSelect}
+            value={selectedUserId}
+          >
+            <option value=""> Select User </option>
+            {appState.userList.map((user) => {
+              // console.log("inside loop", user);
+              return (
+                <option key={user.userID} value={user.userID.toString()}>
+                  {user.username}
+                </option>
+              );
+            })}
+          </Form.Select>
+        </div>
+        <Button
+          className="w-100 m-3"
+          variant="light"
+          onClick={appState.loggedInUser ? logout : login}
+          data-test="login-button"
         >
-          <option value=""> Select User </option>
-          {appState.userList.map((user) => {
-            // console.log("inside loop", user);
-            return (
-              <option key={user.userID} value={user.userID.toString()}>
-                {user.username}
-              </option>
-            );
-          })}
-        </Form.Select>
-        <p className="logged-status">
-          {appState.loggedInUser
-            ? "Logged in as " + appState.loggedInUser?.username
-            : "You are logged out"}
-        </p>
+          <Link
+            to={routes.resources}
+            className="text-dark text-decoration-none"
+          >
+            {appState.loggedInUser ? "LogOut" : "Login"}
+          </Link>
+        </Button>
       </div>
-
-      <Button
-        className="login-button"
-        size="lg"
-        variant="warning"
-        onClick={appState.loggedInUser ? logout : login}
-        data-test="login-button"
-      >
-        <Link to={routes.resources}>
-          {appState.loggedInUser ? "LogOut" : "Login"}
-        </Link>
-      </Button>
     </>
   );
 }

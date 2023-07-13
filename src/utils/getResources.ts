@@ -14,9 +14,7 @@ export interface IDBResources {
 }
 export async function getResources(): Promise<IResource[]> {
   try {
-    const response = await axios.get(
-      "https://study-resource-catalog-c5c3.herokuapp.com/resources"
-    );
+    const response = await axios.get("http://localhost:4000/resources");
     const resources: IResource[] = response.data.map((row: IDBResources) => ({
       resourceID: row.resource_id,
       submitter: row.submitter,

@@ -11,12 +11,9 @@ export default function SearchBar({
 }: SearchBarProps): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div
-      className="form-group"
-      style={{ marginTop: "50px", display: "flex", justifyContent: "center" }}
-    >
+    <div className="d-flex mt-3 justify-content-center">
       <input
-        className="form-control text-center"
+        className="form-control text-center m-2"
         style={{ width: "400px" }}
         onChange={(e) => {
           setSearchTerm(e.target.value);
@@ -24,6 +21,7 @@ export default function SearchBar({
       />
       <Button
         variant="light"
+        className="m-2"
         onClick={() => {
           setAppState({
             ...appState,

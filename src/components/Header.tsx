@@ -13,16 +13,9 @@ interface HeaderProps {
 export function Header({ appState, setAppState }: HeaderProps): JSX.Element {
   return (
     <header>
-      <Navbar bg="success">
+      <Navbar bg="primary" variant="light">
         <Container>
-          <Navbar.Brand className="app-navbar">
-            {/* <img
-              src={Logo}
-              alt="Learning Resources Logo@clipartmax.com"
-              width="100"
-              height="60"
-              className="d-inline-block align-middle"
-            />{" "} */}
+          <Navbar.Brand className="text-light h1 fs-2">
             STUDY RESOURCES CATALOGUE
           </Navbar.Brand>
           <LoginUser appState={appState} setAppState={setAppState} />

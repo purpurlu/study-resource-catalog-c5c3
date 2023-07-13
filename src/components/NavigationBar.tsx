@@ -12,9 +12,9 @@ export default function NavigationBar({
 }: NavigationBarProps): JSX.Element {
   return (
     <div>
-      <Navbar bg="warning" variant="light">
+      <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="#home" className="h1 text-dark mb-0">
             Welcome, {appState.loggedInUser?.username}
           </Navbar.Brand>
           <Nav className="me-auto">
